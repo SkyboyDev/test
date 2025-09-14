@@ -1,0 +1,615 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ELEVÉ — Youth It, Elevate It</title>
+  <meta name="description" content="ELEVÉ — Student-made curated lifestyle brand. T-Shirts, Watches, Menswear, Womenswear, Home decor & limited editions." />
+  <style>
+    /* -------------------------
+       Minimal Luxury Design — ELEVÉ
+       Neutral base, warm-gold accent, subtle animations
+       ------------------------- */
+    :root{
+      --bg:#fbfaf8;
+      --card:#ffffff;
+      --muted:#6b6f76;
+      --text:#0b0e12;
+      --gold-1:#caa33f;
+      --gold-2:#f4c95a;
+      --accent-grad: linear-gradient(90deg,var(--gold-1),var(--gold-2));
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 10px 30px rgba(11,17,32,0.08);
+      --radius:16px;
+      --maxw:1180px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#fff);font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:var(--text);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:22px}
+    header{position:sticky;top:0;z-index:80;background:linear-gradient(180deg,rgba(255,255,255,0.75), rgba(255,255,255,0.55));backdrop-filter: blur(6px);box-shadow:0 2px 10px rgba(11,17,32,0.03)}
+    .topbar{display:flex;align-items:center;gap:20px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:var(--accent-grad);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:'Playfair Display',serif;font-size:24px;box-shadow:var(--shadow)
+    }
+    .brand-text{line-height:1}
+    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:18px}
+    .brand p{margin:0;color:var(--muted);font-size:12px}
+    nav{margin-left:auto;display:flex;align-items:center;gap:16px}
+    .nav-link{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600}
+    .nav-link:hover{color:var(--text);background:rgba(11,17,32,0.03)}
+    /* Search */
+    .searchbar{display:flex;align-items:center;gap:8px;background:rgba(11,17,32,0.03);padding:8px;border-radius:12px;min-width:320px}
+    .searchbar input{border:0;background:transparent;outline:none;padding:8px 6px;font-size:14px;width:100%}
+    .btn{padding:9px 14px;border-radius:999px;border:0;background:var(--accent-grad);color:white;font-weight:700;cursor:pointer;box-shadow:0 10px 30px rgba(202,163,63,0.12)}
+    .icon-btn{background:transparent;border:1px solid rgba(11,17,32,0.06);padding:8px;border-radius:10px;cursor:pointer}
+    /* Layout */
+    main{padding:28px 0}
+    .hero{display:grid;grid-template-columns:1fr 430px;gap:28px;align-items:center;padding:28px 0}
+    .hero-card{background:var(--card);padding:28px;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+    .hero h2{font-family:'Playfair Display',serif;font-size:36px;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 16px}
+    .cta-row{display:flex;gap:12px}
+    /* categories */
+    .categories{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .cat{background:transparent;padding:8px 12px;border-radius:10px;border:1px solid rgba(11,17,32,0.05);font-weight:700;cursor:pointer}
+    .cat.active{background:rgba(250,244,230,0.6);border-color:rgba(202,163,63,0.2)}
+    /* grid */
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+    .card{background:var(--card);border-radius:14px;overflow:hidden;padding:12px;box-shadow:0 8px 24px rgba(11,17,32,0.04);transition:transform .28s,box-shadow .28s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(11,17,32,0.08)}
+    .img-wrap{height:200px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(244,201,90,0.06),rgba(202,163,63,0.03))}
+    .img-wrap img{max-width:100%;max-height:100%;display:block;transition:transform .6s;transform-origin:center}
+    .card:hover .img-wrap img{transform:scale(1.06)}
+    .prod-title{font-weight:700;margin:10px 0 6px}
+    .prod-meta{display:flex;justify-content:space-between;align-items:center;color:var(--muted)}
+    .price{font-weight:800;color:var(--text)}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(11,17,32,0.04);color:var(--muted)}
+    /* product list long view (amazon-like) */
+    .list-view .list-item{display:flex;gap:18px;padding:16px;border-radius:12px;background:var(--card);box-shadow:0 8px 22px rgba(11,17,32,0.03)}
+    .list-image{width:160px;height:120px;border-radius:10px;flex-shrink:0;overflow:hidden;background:linear-gradient(180deg,rgba(251,113,133,0.04),rgba(245,158,11,0.03));display:flex;align-items:center;justify-content:center}
+    .list-content{flex:1}
+    .list-title{font-weight:800;margin:0 0 6px}
+    .list-desc{color:var(--muted);margin:0 0 8px}
+    .list-meta{display:flex;gap:12px;align-items:center}
+    /* drawer / detail */
+    .drawer{position:fixed;right:0;top:0;height:100%;width:460px;background:var(--card);box-shadow:-40px 0 80px rgba(11,17,32,0.06);transform:translateX(100%);transition:transform .36s ease;z-index:90;padding:22px;overflow:auto;border-left:1px solid rgba(11,17,32,0.03)}
+    .drawer.open{transform:translateX(0)}
+    .drawer h3{margin:0;font-size:20px}
+    .drawer .thumb{height:260px;border-radius:12px;overflow:hidden;margin-top:12px;background:linear-gradient(180deg,rgba(245,158,11,0.05),rgba(251,113,133,0.03));display:flex;align-items:center;justify-content:center}
+    .drawer .row{display:flex;gap:12px;margin-top:12px;align-items:center}
+    .review{background:rgba(250,250,250,0.9);padding:10px;border-radius:10px;margin-top:10px}
+    /* cart modal */
+    .cart-modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);background:var(--card);padding:18px;border-radius:12px;box-shadow:0 30px 80px rgba(11,17,32,0.14);display:none;z-index:100;min-width:320px}
+    .cart-modal.open{display:block}
+    .cart-list{max-height:320px;overflow:auto;margin-top:8px}
+    /* footer */
+    footer{margin-top:36px;padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+    /* animations */
+    .fade{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+    .fade.show{opacity:1;transform:none}
+    @keyframes pulse {0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+    .sparkle{background:linear-gradient(120deg,rgba(255,255,255,0.2),rgba(255,255,255,0.05));animation:pulse 6s infinite}
+    /* responsive */
+    @media (max-width:900px){ .hero{grid-template-columns:1fr; } .drawer{width:100%} .searchbar{min-width:160px} .nav{display:none} .brand h1{font-size:16px} }
+    @media (max-width:560px){ .img-wrap{height:140px} .list-image{width:120px;height:96px} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden>É</div>
+        <div class="brand-text">
+          <h1>ELEVÉ</h1>
+          <p>Youth It, Elevate It</p>
+        </div>
+      </div>
+
+      <!-- Search bar -->
+      <div style="margin-left:18px;flex:1;max-width:640px;">
+        <form id="searchForm" class="searchbar" onsubmit="return false;">
+          <input id="searchInput" placeholder="Search products, e.g. 'white t-shirt' or 'minimal watch'"/>
+          <button id="searchBtn" class="btn" title="Search">Search</button>
+        </form>
+      </div>
+
+      <nav>
+        <a class="nav-link" href="#/">Home</a>
+        <a class="nav-link" href="#/category/tshirts">T-Shirts</a>
+        <a class="nav-link" href="#/category/watches">Watches</a>
+        <a class="nav-link" href="#/category/menswear">Menswear</a>
+        <a class="nav-link" href="#/category/womenswear">Womenswear</a>
+        <button id="cartBtn" class="icon-btn" title="Cart">Cart <span id="cartCount" style="margin-left:6px;font-weight:700">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="app">
+    <!-- HOME -->
+    <section id="home" class="fade show">
+      <div class="hero">
+        <div class="hero-card">
+          <h2>ELEVÉ — curated goods for the youthful & refined</h2>
+          <p>Handmade craft, premium apparel, refined accessories — thoughtfully made. Browse categories, search deeply and shop an elevated selection.</p>
+          <div class="cta-row">
+            <a href="#/products" class="btn">Shop All</a>
+            <a href="#/category/tshirts" class="cat">T-Shirts</a>
+            <a href="#/category/watches" class="cat">Watches</a>
+            <a href="#/category/menswear" class="cat">Menswear</a>
+            <a href="#/category/womenswear" class="cat">Womenswear</a>
+          </div>
+
+          <div class="categories" style="margin-top:18px">
+            <div class="cat" data-cat="tshirts">T-Shirts</div>
+            <div class="cat" data-cat="watches">Watches</div>
+            <div class="cat" data-cat="menswear">Menswear</div>
+            <div class="cat" data-cat="womenswear">Womenswear</div>
+            <div class="cat" data-cat="home">Home & Decor</div>
+            <div class="cat" data-cat="limited">Limited Edition</div>
+          </div>
+
+          <div style="margin-top:20px" id="featuredGrid">
+            <!-- small featured grid rendered by JS -->
+          </div>
+        </div>
+
+        <div class="hero-card sparkle">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-weight:800">Limited drop</div>
+            <div style="font-size:18px;font-weight:700">Hand-stitched leather journal</div>
+            <div style="color:var(--muted)">Only 12 pieces. Crafted & finished by our students. Premium packaging included.</div>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <a href="#/product/journal-01" class="btn">View</a>
+              <a href="#/products" class="cat">See collection</a>
+            </div>
+            <div style="height:220px;border-radius:12px;overflow:hidden;margin-top:8px;background:linear-gradient(180deg,rgba(255,255,255,0.5),rgba(250,250,250,0.2));display:flex;align-items:center;justify-content:center">
+              <!-- placeholder cover image -->
+              <svg width="320" height="160" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <rect width="100%" height="100%" fill="#fff8f6"></rect>
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#caa33f" font-size="18" font-family="Inter">Featured — ELEVÉ Drop</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS (grid) -->
+    <section id="products" style="display:none;">
+      <div class="toolbar">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div id="breadcrumb" style="color:var(--muted)">Home / All products</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <select id="sortSelect" style="padding:8px;border-radius:10px;border:1px solid rgba(11,17,32,0.06)">
+            <option value="featured">Featured</option>
+            <option value="low">Price: Low → High</option>
+            <option value="high">Price: High → Low</option>
+            <option value="rating">Top rated</option>
+          </select>
+          <button id="toggleView" class="icon-btn">Toggle list/grid</button>
+        </div>
+      </div>
+
+      <div id="productsContainer">
+        <div id="gridView" class="grid"></div>
+        <div id="listView" style="display:none;flex-direction:column;gap:14px"></div>
+      </div>
+    </section>
+
+    <!-- CATEGORY / SEARCH will reuse products section -->
+    <!-- PRODUCT DETAIL (drawer) -->
+    <aside id="drawer" class="drawer" aria-hidden="true">
+      <button id="closeDrawer" style="float:right;background:transparent;border:none;font-size:18px;cursor:pointer">✕</button>
+      <div id="drawerBody"></div>
+    </aside>
+
+    <!-- CART MODAL -->
+    <div id="cartModal" class="cart-modal" aria-hidden="true">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong>Your cart</strong>
+        <button id="closeCart" class="icon-btn">Close</button>
+      </div>
+      <div class="cart-list" id="cartList"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+        <div><strong>Total:</strong> <span id="cartTotal">₹0</span></div>
+        <div style="display:flex;gap:8px">
+          <button id="clearCart" class="icon-btn">Clear</button>
+          <button id="checkout" class="btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" style="display:none;padding:20px 0">
+      <div style="max-width:900px">
+        <h2 style="font-family:'Playfair Display',serif">About ELEVÉ</h2>
+        <p style="color:var(--muted)">ELEVÉ is a student-led boutique brand blending craft, fashion and thoughtful design. We create limited runs and curate quality pieces — every order supports student workshops and materials.</p>
+      </div>
+    </section>
+
+    <!-- SEARCH RESULTS (separate page feel) -->
+    <section id="searchResults" style="display:none;padding-top:8px">
+      <div style="display:flex;gap:14px;align-items:center;justify-content:space-between">
+        <div><strong id="searchQueryText"></strong></div>
+        <div style="color:var(--muted)" id="searchCountText"></div>
+      </div>
+      <div style="margin-top:10px" id="searchContainer"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width:var(--maxw);margin:0 auto;padding:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="font-weight:700">ELEVÉ</div>
+        <div style="color:var(--muted)">Youth It, Elevate It • © <span id="year"></span></div>
+        <div style="color:var(--muted)">Trust & authenticity • Secure checkout • Student-run</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /************************************************
+     * ELEVÉ — Single-file static site JS
+     * Features:
+     * - Hash routing (#/ , #/products, #/category/:x, #/product/:id, #/search?q=)
+     * - Search results page (dedicated)
+     * - Grid and list (Amazon-style listing)
+     * - Drawer product detail + add to cart (localStorage)
+     ************************************************/
+
+    // -----------------------
+    // Sample product dataset
+    // Replace images with real image URLs (product.img) for production
+    // -----------------------
+    const PRODUCTS = [
+  { id:'tshirt-white-01', name:'Classic White Tee', price:699, rating:4.3, category:'tshirts', tags:['white','basic','menswear'], short:'Combed cotton, relaxed fit.', desc:'Premium combed cotton tee with neat finish. Available in sizes S–XL.', img:"https://images.pexels.com/photos/20230624/pexels-photo-20230624.jpeg", reviews:[{name:'Asha',r:5,text:'Soft & comfy!'}]},
+  { id:'tshirt-graphic-02', name:'Minimal Graphic Tee', price:899, rating:4.6, category:'tshirts', tags:['graphic','menswear'], short:'Subtle chest print.', desc:'Minimal design printed on premium cotton.', img:"https://images.pexels.com/photos/26447865/pexels-photo-26447865.jpeg", reviews:[{name:'Rohit',r:5,text:'Great print quality.'}]},
+  { id:'watch-noir-01', name:'Noir Minimal Watch', price:4999, rating:4.8, category:'watches', tags:['black','watch','accessories'], short:'Slim black case, leather strap.', desc:'Water-resistant to 30m. Slim profile for daily wear.', img:"https://images.pexels.com/photos/2410047/pexels-photo-2410047.jpeg", reviews:[{name:'Meera',r:5,text:'Elegant & lightweight.'}]},
+  { id:'journal-01', name:'Hand-stitched Leather Journal', price:1799, rating:4.9, category:'limited', tags:['leather','stationery','home'], short:'Veg-tanned leather, handmade paper.', desc:'Perfect gift. Limited run.', img:"https://images.pexels.com/photos/10480622/pexels-photo-10480622.jpeg", reviews:[{name:'Kabir',r:5,text:'A statement piece.'}]},
+  { id:'plate-gold-01', name:'Gold Leaf Decorative Plate', price:3299, rating:4.7, category:'home', tags:['decor','gold'], short:'Ceramic plate with gold leaf accents.', desc:'Display piece for shelves and consoles.', img:"https://images.pexels.com/photos/11889249/pexels-photo-11889249.jpeg", reviews:[{name:'Neha',r:5,text:'Beautiful finish.'}]},
+  { id:'dress-01', name:'Satin Slip Dress', price:2599, rating:4.5, category:'womenswear', tags:['dress','party'], short:'Bias-cut satin, flattering silhouette.', desc:'Luxury satin with comfortable lining.', img:"https://images.pexels.com/photos/8084021/pexels-photo-8084021.jpeg", reviews:[{name:'Simran',r:5,text:'Fits beautifully.'}]},
+  { id:'blazer-01', name:'Tailored Blazer', price:3999, rating:4.4, category:'menswear', tags:['formal','blazer'], short:'Slim-tailored, versatile.', desc:'Perfect for events and semi-formal looks.', img:"https://images.pexels.com/photos/6764954/pexels-photo-6764954.jpeg", reviews:[{name:'Aman',r:4,text:'Good quality fabric.'}]},
+  { id:'tshirt-white-03', name:'Organic White Tee (Slim)', price:799, rating:4.2, category:'tshirts', tags:['white','organic'], short:'Slim fit made with organic cotton.', desc:'Eco-friendly dyeing, premium finish.', img:"https://images.pexels.com/photos/2112651/pexels-photo-2112651.jpeg", reviews:[{name:'Sara',r:5,text:'Nice fabric.'}]}
+];
+
+
+    // helpers
+    const qs = sel => document.querySelector(sel);
+    const qsa = sel => Array.from(document.querySelectorAll(sel));
+    const fmt = n => '₹' + n.toLocaleString('en-IN');
+
+    // initialize year
+    qs('#year').textContent = new Date().getFullYear();
+
+    // render featured (home small grid)
+    function renderFeatured(){
+      const el = qs('#featuredGrid');
+      el.innerHTML = '';
+      const sample = PRODUCTS.slice(0,4);
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+      sample.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="img-wrap">${productImageHTML(p,150,100)}</div>
+          <div class="prod-title">${escapeHtml(p.name)}</div>
+          <div class="prod-meta"><div class="tag">${escapeHtml(p.category)}</div><div class="price">${fmt(p.price)}</div></div>
+        `;
+        card.addEventListener('click',()=> location.hash = '#/product/' + p.id);
+        grid.appendChild(card);
+      });
+      el.appendChild(grid);
+    }
+
+    // product image html (placeholder SVG if no image)
+    function productImageHTML(p,w=420,h=280){
+      if(p.img) return `<img src="${p.img}" alt="${escapeHtml(p.name)}">`;
+      // SVG placeholder with subtle luxury color
+      const txt = encodeURIComponent(p.name);
+      return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${escapeHtml(p.name)}">
+        <rect width="100%" height="100%" fill="#fffaf6"/>
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="14" fill="#caa33f" font-family="Inter">${txt}</text>
+      </svg>`;
+    }
+
+    // escape
+    function escapeHtml(s=''){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+    // -----------------------
+    // Routing
+    // -----------------------
+    function router(){
+      const hash = location.hash.replace('#','') || '/';
+      // hide all sections
+      ['home','products','about','searchResults'].forEach(id=> qs('#'+id).style.display='none');
+      // close drawer
+      closeDrawer();
+      if(hash === '/' || hash === ''){
+        qs('#home').style.display='block';
+        qs('#breadcrumb').textContent = 'Home /';
+      } else if(hash.startsWith('/products')){
+        qs('#products').style.display='block';
+        qs('#breadcrumb').textContent = 'Products';
+        renderProductsView({ view:'grid' });
+      } else if(hash.startsWith('/category/')){
+        const cat = hash.split('/')[2];
+        qs('#products').style.display='block';
+        qs('#breadcrumb').textContent = 'Category / ' + decodeURIComponent(cat);
+        renderProductsView({ category:cat });
+      } else if(hash.startsWith('/product/')){
+        const id = hash.split('/')[2];
+        openDrawer(id);
+      } else if(hash.startsWith('/search')){
+        // query params parsing
+        const q = parseQuery(hash);
+        openSearchPage(q.q || '', q);
+      } else if(hash.startsWith('/about')){
+        qs('#about').style.display='block';
+      } else {
+        qs('#home').style.display='block';
+      }
+    }
+
+    // parse query string from hash like /search?q=white+tshirt
+    function parseQuery(hash){
+      const idx = hash.indexOf('?');
+      const out = {};
+      if(idx === -1) return out;
+      const str = hash.slice(idx+1);
+      str.split('&').forEach(pair=>{
+        const [k,v] = pair.split('=');
+        out[k] = decodeURIComponent((v||'').replace(/\+/g,' '));
+      });
+      return out;
+    }
+
+    // -----------------------
+    // PRODUCTS rendering & list view (amazon-like)
+    // -----------------------
+    let currentViewMode = 'grid'; // or 'list'
+    function renderProductsView({ category=null, search=null } = {}){
+      const grid = qs('#gridView'); const list = qs('#listView');
+      grid.innerHTML = ''; list.innerHTML = '';
+      // filter
+      let items = PRODUCTS.slice();
+      if(category) items = items.filter(p => p.category === category);
+      if(search) {
+        const q = search.toLowerCase();
+        items = items.filter(p => (p.name + ' ' + p.short + ' ' + (p.tags||[]).join(' ')).toLowerCase().includes(q));
+      }
+      // sort
+      const sortVal = qs('#sortSelect')?.value || 'featured';
+      if(sortVal === 'low') items.sort((a,b)=>a.price-b.price);
+      if(sortVal === 'high') items.sort((a,b)=>b.price-a.price);
+      if(sortVal === 'rating') items.sort((a,b)=>b.rating-a.rating);
+
+      // grid cards
+      items.forEach(p=>{
+        const card = document.createElement('article'); card.className='card';
+        card.innerHTML = `
+          <div class="img-wrap">${productImageHTML(p)}</div>
+          <div class="prod-title">${escapeHtml(p.name)}</div>
+          <div class="prod-meta"><div class="tag">${escapeHtml(p.category)}</div><div class="price">${fmt(p.price)}</div></div>
+        `;
+        card.addEventListener('click',()=> location.hash = '#/product/' + p.id);
+        grid.appendChild(card);
+
+        // list item
+        const li = document.createElement('div'); li.className = 'list-item';
+        li.innerHTML = `
+          <div class="list-item" style="display:flex;gap:16px;align-items:flex-start">
+            <div class="list-image">${productImageHTML(p,160,120)}</div>
+            <div class="list-content">
+              <h3 class="list-title">${escapeHtml(p.name)}</h3>
+              <div class="list-desc">${escapeHtml(p.short)}</div>
+              <div class="list-meta" style="margin-top:8px">
+                <div class="price">${fmt(p.price)}</div>
+                <div style="color:var(--muted)">${p.rating} ★</div>
+                <div style="margin-left:auto"><button class="btn add-quick" data-id="${p.id}">Add</button></div>
+              </div>
+            </div>
+          </div>
+        `;
+        // attach click to open product detail when clicking title or image
+        li.querySelector('.list-title').addEventListener('click', ()=> location.hash = '#/product/' + p.id);
+        li.querySelector('.list-image').addEventListener('click', ()=> location.hash = '#/product/' + p.id);
+        // quick add
+        li.querySelector('.add-quick')?.addEventListener('click', (e)=>{ e.stopPropagation(); addToCartById(p.id); });
+        list.appendChild(li);
+      });
+
+      // toggle view
+      qs('#gridView').style.display = currentViewMode === 'grid' ? 'grid' : 'none';
+      qs('#listView').style.display = currentViewMode === 'list' ? 'flex' : 'none';
+    }
+
+    // toggle view button
+    qs('#toggleView').addEventListener('click', ()=>{ currentViewMode = currentViewMode === 'grid' ? 'list' : 'grid'; renderProductsView(); });
+
+    // sort change
+    qs('#sortSelect').addEventListener('change', ()=> renderProductsView());
+
+    // -----------------------
+    // Search functionality (shows dedicated Search Results "page")
+    // -----------------------
+    qs('#searchBtn').addEventListener('click', ()=>{
+      const q = qs('#searchInput').value.trim();
+      if(!q) return;
+      location.hash = '#/search?q=' + encodeURIComponent(q);
+    });
+    // press enter in input
+    qs('#searchInput').addEventListener('keydown', (e)=> { if(e.key === 'Enter'){ e.preventDefault(); qs('#searchBtn').click(); } });
+
+    function openSearchPage(query, queryObj){
+      qs('#searchResults').style.display = 'block';
+      qs('#searchQueryText').textContent = `Results for “${query}”`;
+      const container = qs('#searchContainer');
+      // find matches
+      const q = (query||'').toLowerCase();
+      let res = PRODUCTS.filter(p => (p.name + ' ' + p.short + ' ' + (p.tags||[]).join(' ')).toLowerCase().includes(q));
+      qs('#searchCountText').textContent = `${res.length} items`;
+      // render list (long listing)
+      container.innerHTML = '';
+      const wrap = document.createElement('div'); wrap.style.display='flex'; wrap.style.flexDirection='column'; wrap.style.gap='12px';
+      res.forEach(p=>{
+        const item = document.createElement('div'); item.className='list-item';
+        item.innerHTML = `
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:14px;border-radius:12px;background:var(--card);box-shadow:0 8px 22px rgba(11,17,32,0.03)">
+            <div class="list-image">${productImageHTML(p,180,120)}</div>
+            <div style="flex:1">
+              <h3 class="list-title" style="margin:0 0 8px"><a href="#/product/${p.id}">${escapeHtml(p.name)}</a></h3>
+              <div style="color:var(--muted)">${escapeHtml(p.short)}</div>
+              <div style="display:flex;gap:12px;align-items:center;margin-top:10px">
+                <div class="price">${fmt(p.price)}</div>
+                <div style="color:var(--muted)">${p.rating} ★</div>
+                <div style="margin-left:auto"><button class="btn add-quick" data-id="${p.id}">Add to cart</button></div>
+              </div>
+            </div>
+          </div>
+        `;
+        // attach add to cart
+        item.querySelector('.add-quick')?.addEventListener('click', ()=> addToCartById(p.id));
+        wrap.appendChild(item);
+      });
+      container.appendChild(wrap);
+    }
+
+    // -----------------------
+    // Drawer (product detail)
+    // -----------------------
+    function openDrawer(id){
+      const p = PRODUCTS.find(x=>x.id === id);
+      if(!p) return;
+      const container = qs('#drawerBody');
+      container.innerHTML = `
+        <h3>${escapeHtml(p.name)}</h3>
+        <div class="tag" style="margin-top:8px">${escapeHtml(p.category)}</div>
+        <div class="thumb">${productImageHTML(p,420,260)}</div>
+        <div class="row"><div style="font-weight:800;font-size:20px">${fmt(p.price)}</div><div style="margin-left:auto;color:var(--muted)">${p.rating} ★</div></div>
+        <p style="color:var(--muted);margin-top:12px">${escapeHtml(p.desc || p.short)}</p>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <button id="addToCartBtn" class="btn">Add to cart</button>
+          <button id="wishlistBtn" class="icon-btn">Wishlist</button>
+        </div>
+        <div style="margin-top:14px"><strong>Customer reviews</strong>${(p.reviews||[]).map(r=>`<div class="review"><strong>${escapeHtml(r.name)}</strong> <span style="color:var(--muted)">• ${r.r} ★</span><div style="color:var(--muted);margin-top:6px">${escapeHtml(r.text)}</div></div>`).join('')}</div>
+      `;
+      qs('#drawer').classList.add('open');
+      qs('#drawer').setAttribute('aria-hidden','false');
+      // attach add to cart
+      qs('#addToCartBtn').addEventListener('click', ()=> { addToCartById(p.id); });
+      // update hash
+      history.replaceState(null,'', '#/product/' + p.id);
+    }
+    qs('#closeDrawer').addEventListener('click', ()=> { closeDrawer(); history.replaceState(null,'', '#/products'); router(); });
+    function closeDrawer(){ qs('#drawer').classList.remove('open'); qs('#drawer').setAttribute('aria-hidden','true'); }
+
+    // -----------------------
+    // CART (localStorage)
+    // -----------------------
+    const CART_KEY = 'eleve_cart_v1';
+    function loadCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }catch(e){return []} }
+    function saveCart(c){ localStorage.setItem(CART_KEY, JSON.stringify(c)); updateCartUI(); }
+    function addToCartById(id){ const p = PRODUCTS.find(x=>x.id===id); if(!p) return; const cart = loadCart(); cart.push({ id:p.id, name:p.name, price:p.price }); saveCart(cart); openCartModal(); }
+    function clearCart(){ localStorage.removeItem(CART_KEY); updateCartUI(); renderCartList(); closeCartModal(); }
+    function updateCartUI(){ const c = loadCart(); qs('#cartCount').textContent = c.length; }
+    // cart modal UI
+    function renderCartList(){
+      const list = qs('#cartList'); const c = loadCart();
+      list.innerHTML = '';
+      if(c.length === 0){ list.innerHTML = '<div style="color:var(--muted)">Cart is empty. Add something lovely.</div>'; qs('#cartTotal').textContent = fmt(0); return; }
+      const frag = document.createDocumentFragment();
+      let total = 0;
+      c.forEach((it,idx)=>{
+        total += it.price;
+        const row = document.createElement('div');
+        row.style.display='flex';row.style.justifyContent='space-between';row.style.padding='8px 0';row.style.borderBottom='1px solid rgba(11,17,32,0.03)';
+        row.innerHTML = `<div>${escapeHtml(it.name)}</div><div style="font-weight:800">${fmt(it.price)}</div>`;
+        frag.appendChild(row);
+      });
+      list.appendChild(frag);
+      qs('#cartTotal').textContent = fmt(total);
+    }
+    function openCartModal(){ renderCartList(); qs('#cartModal').classList.add('open'); qs('#cartModal').setAttribute('aria-hidden','false'); }
+    function closeCartModal(){ qs('#cartModal').classList.remove('open'); qs('#cartModal').setAttribute('aria-hidden','true'); }
+    qs('#cartBtn').addEventListener('click', ()=> openCartModal());
+    qs('#closeCart').addEventListener('click', ()=> closeCartModal());
+    qs('#clearCart').addEventListener('click', ()=> { clearCart(); });
+    qs('#checkout').addEventListener('click', ()=> { alert('Demo checkout — integrate Stripe/Razorpay to accept payments.'); clearCart(); });
+
+    // -----------------------
+    // small UI events
+    // -----------------------
+    // clicking category chips on home
+    qsa('.cat').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const cat = el.getAttribute('data-cat') || el.textContent.trim().toLowerCase();
+        location.hash = '#/category/' + encodeURIComponent(cat);
+      });
+    });
+
+    // clicking featured sample cards will be handled in renderFeatured
+
+    // quick add handlers from list view are delegated when rendering
+
+    // make grid/list toggle for products view
+    qs('#toggleView').addEventListener('click', ()=> {
+      currentViewMode = currentViewMode === 'grid' ? 'list' : 'grid';
+      renderProductsView();
+    });
+
+    // add-quick delegated on list view clicks (listen on entire list container)
+    qs('#productsContainer').addEventListener('click', (e) => {
+      if(e.target.matches('.add-quick')) {
+        const id = e.target.getAttribute('data-id');
+        addToCartById(id);
+      }
+    });
+
+    // Escape key to close drawer/cart
+    window.addEventListener('keydown', (e)=> {
+      if(e.key === 'Escape'){
+        closeDrawer(); closeCartModal();
+      }
+    });
+
+    // click a product card from home featured section (renderFeatured attaches)
+    // initial render
+    renderFeatured();
+    updateCartUI(); renderCartList();
+
+    // auto-route on load/hash change
+    window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
+
+    // If hash starts with product on load (deep link)
+    if(location.hash.startsWith('#/product/')) {
+      setTimeout(()=> router(), 120);
+    }
+
+    // Helpers
+    function addToCartById(id){ addToCartByIdInternal(id); }
+    function addToCartByIdInternal(id){
+      const p = PRODUCTS.find(x=>x.id === id);
+      if(!p) return;
+      const cart = loadCart();
+      cart.push({ id:p.id, name:p.name, price:p.price });
+      saveCart(cart);
+      // quick toast (simple)
+      const t = document.createElement('div'); t.textContent = `${p.name} added to cart`; t.style.position='fixed'; t.style.right='20px'; t.style.bottom='20px'; t.style.padding='10px 14px'; t.style.background='rgba(11,17,32,0.9)'; t.style.color='white'; t.style.borderRadius='8px'; t.style.zIndex=120; document.body.appendChild(t);
+      setTimeout(()=> t.remove(), 1500);
+      renderCartList();
+    }
+
+    // alias safe function for external usage in code above
+    function addToCartByIdExternal(id){ addToCartByIdInternal(id); }
+
+    // expose for inline calls (not necessary but handy)
+    window.addToCartById = addToCartByIdExternal;
+  </script>
+</body>
+</html>
